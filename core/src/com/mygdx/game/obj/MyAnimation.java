@@ -60,7 +60,7 @@ public class MyAnimation {
 
     public void shiftTime(){time += Gdx.graphics.getDeltaTime();}
 
-    public Vector2 getPosition() {return new Vector2(x,y);}
+    public Vector2 getPosition() {return new Vector2(x*scaleX,y*scaleY);}
 
     public void setPosition(Vector2 position) {
         x = position.x;

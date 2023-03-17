@@ -68,10 +68,16 @@ public class Game extends ApplicationAdapter {
 
 		batch.begin();
 		batch.draw(back, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		Gdx.graphics.setTitle(String.valueOf(birds.size()) + " " + 1.0f/Gdx.graphics.getDeltaTime());
+
 		//птички
-		for (InObject bird: birds) {
+		Iterator<InObject> iteratorBird = birds.iterator();
+		while (iteratorBird.hasNext()) {
+			InObject bird = iteratorBird.next();
 			bird.animation.draw(batch, Gdx.graphics.getDeltaTime());
+			if (bird.animation.getPosition().x < 0 ) {
+				bird.dispose();
+				iteratorBird.remove();
+			}
 		}
 
 		// это про взрывы
@@ -86,9 +92,11 @@ public class Game extends ApplicationAdapter {
 				}
 			}
 		}
+
 		for (int i = 0; i < explosions.size(); i++) {
 			explosions.get(i).animation.draw(batch, Gdx.graphics.getDeltaTime());
 		}
+
 		for (InObject bird: deadBeards) {
 			bird.moveing();
 			bird.animation.draw(batch, Gdx.graphics.getDeltaTime());
@@ -101,6 +109,7 @@ public class Game extends ApplicationAdapter {
 				explosions.remove(i);
 			}
 		}
+
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 			Gdx.app.exit();
 		}
