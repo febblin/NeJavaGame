@@ -1,4 +1,7 @@
 package com.mygdx.game;
+/**
+ * Моя новая игра
+ */
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
